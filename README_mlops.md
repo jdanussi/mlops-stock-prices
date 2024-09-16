@@ -98,3 +98,44 @@ terraform init
 terraform fmt
 terraform plan
 terraform apply / terraform apply -auto-approve
+
+
+
+EC2_SSH_KEY
+
+> cat ~/.ssh/mlopskey
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+QyNTUxOQAAACDQQjZ5vLjluGrSRUws23CgKXNx4jAu2cElAJTkNS1HwQAAAJi6803buvNN
+2wAAAAtzc2gtZWQyNTUxOQAAACDQQjZ5vLjluGrSRUws23CgKXNx4jAu2cElAJTkNS1HwQ
+AAAEDoHBQeakAfy4zqUrVpVr3rrMT+lioNPJwsk3Zi0LxVT9BCNnm8uOW4atJFTCzbcKAp
+c3HiMC7ZwSUAlOQ1LUfBAAAAEmpkYW51c3NpQGphZC14cHMxNQECAw==
+-----END OPENSSH PRIVATE KEY-----
+> cat ~/.ssh/mlopskey.pub 
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINBCNnm8uOW4atJFTCzbcKApc3HiMC7ZwSUAlOQ1LUfB jdanussi@jad-xps15
+> 
+
+appleboy/scp-action@master Error: missing server host
+
+
+HOST_DNS=ec2-54-86-39-201.compute-1.amazonaws.com
+
+USERNAME
+ubuntu
+
+TARGET_DIR
+/home/ubuntu/app
+
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+
+
+
+
+
+ubuntu@ip-10-0-1-92:~/.ssh$ cat authorized_keys 
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINBCNnm8uOW4atJFTCzbcKApc3HiMC7ZwSUAlOQ1LUfB mlopskey
+
+HOST_DNS=ec2-54-86-39-201.compute-1.amazonaws.com; ssh -i ~/.ssh/mlopskey ubuntu@$HOST_DNS
+
+
