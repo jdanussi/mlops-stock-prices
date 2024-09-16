@@ -1,0 +1,30 @@
+[tool.pylint."messages control"]
+
+disable = [
+    "invalid-name",
+    "import-error",
+    "too-few-public-methods",
+    "duplicate-code",
+    "pointless-statement",
+    "too-many-locals",
+    "unused-argument",
+    "unused-import"
+]
+
+[tool.black]
+line-length = 88
+
+[tools.isort]
+multi_line_output = 3
+length_sort = true
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests",
+    "integration",
+]
+pythonpath = [
+  "dags"
+]
