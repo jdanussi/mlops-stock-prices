@@ -22,48 +22,60 @@ jobs:
            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
            aws-region: "us-east-1"
 
-      - &scp_config # Define common SCP configuration
-        host: ${{ secrets.HOST_DNS }}
-        username: ${{ secrets.USERNAME }}
-        port: 22
-        key: ${{ secrets.EC2_SSH_KEY }}
-        target: ${{ secrets.TARGET_DIR }}
-
+      - name: Set environment variables
+        run: |
+          echo "HOST=${{ secrets.HOST_DNS }}" >> $GITHUB_ENV
+          echo "USERNAME=${{ secrets.USERNAME }}" >> $GITHUB_ENV
+          echo "PORT=22" >> $GITHUB_ENV
+          echo "SSHKEY=${{ secrets.EC2_SSH_KEY }}" >> $GITHUB_ENV
+          echo "TARGET=${{ secrets.TARGET_DIR }}" >> $GITHUB_ENV
+    
       - name: Copy 'dags' folder
         uses: appleboy/scp-action@master
         with:
-          <<: *scp_config # Reuse SCP config
+          host: ${{ env.HOST }}
+          username: ${{ env.USERNAME }}
+          port: ${{ env.PORT }}
+          key: ${{ env.SSHKEY }}
           source: "./dags"
+          target: ${{ env.TARGET }}
 
       - name: Copy 'docker-airflow' folder
         uses: appleboy/scp-action@master
         with:
-          <<: *scp_config # Reuse SCP config
+          host: ${{ env.HOST }}
+          username: ${{ env.USERNAME }}
+          port: ${{ env.PORT }}
+          key: ${{ env.SSHKEY }}
           source: "./docker-airflow"
+          target: ${{ env.TARGET }}
 
       - name: Copy 'integration-test' folder
         uses: appleboy/scp-action@master
         with:
-          <<: *scp_config # Reuse SCP config
+          host: ${{ env.HOST }}
+          username: ${{ env.USERNAME }}
+          port: ${{ env.PORT }}
+          key: ${{ env.SSHKEY }}
           source: "./integration-test"
+          target: ${{ env.TARGET }}
 
-      - name: Copy 'test' folder
-        uses: appleboy/scp-action@master
-        with:
-          <<: *scp_config # Reuse SCP config
-          source: "./test"
-  
       - name: Copy 'docker-compose-airflow.yaml' folder
         uses: appleboy/scp-action@master
         with:
-          <<: *scp_config # Reuse SCP config
+          host: ${{ env.HOST }}
+          username: ${{ env.USERNAME }}
+          port: ${{ env.PORT }}
+          key: ${{ env.SSHKEY }}
           source: "./docker-compose-airflow.yaml"
+          target: ${{ env.TARGET }}
   
       - name: Copy 'Makefile' folder
         uses: appleboy/scp-action@master
         with:
-          <<: *scp_config # Reuse SCP config
+          host: ${{ env.HOST }}
+          username: ${{ env.USERNAME }}
+          port: ${{ env.PORT }}
+          key: ${{ env.SSHKEY }}
           source: "./Makefile"
-  
-
-          
+          target: ${{ env.TARGET }}
