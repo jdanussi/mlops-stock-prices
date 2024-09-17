@@ -118,13 +118,15 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINBCNnm8uOW4atJFTCzbcKApc3HiMC7ZwSUAlOQ1LUfB
 appleboy/scp-action@master Error: missing server host
 
 
-HOST_DNS=ec2-54-86-39-201.compute-1.amazonaws.com
+HOST_DNS=ec2-18-208-231-130.compute-1.amazonaws.com
 
 USERNAME
 ubuntu
 
 TARGET_DIR
 /home/ubuntu/app
+/home/ubuntu/mlops-stock-prices
+
 
 AWS_ACCESS_KEY_ID
 AWS_SECRET_ACCESS_KEY
@@ -136,6 +138,5 @@ AWS_SECRET_ACCESS_KEY
 ubuntu@ip-10-0-1-92:~/.ssh$ cat authorized_keys 
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINBCNnm8uOW4atJFTCzbcKApc3HiMC7ZwSUAlOQ1LUfB mlopskey
 
-HOST_DNS=ec2-54-86-39-201.compute-1.amazonaws.com; ssh -i ~/.ssh/mlopskey ubuntu@$HOST_DNS
-
+HOST_DNS=ec2-18-208-231-130.compute-1.amazonaws.com; ssh -i ~/.ssh/mlopskey ubuntu@$HOST_DNS
 
