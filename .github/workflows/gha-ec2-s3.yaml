@@ -69,16 +69,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: 22
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: "./docker-compose-airflow.yaml"
+          source: "docker-compose-airflow.yaml, Makefile"
           target: ${{ secrets.TARGET_DIR }}
-
-      - name: Copy 'Makefile' folder
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.HOST_DNS }}
-          username: ${{ secrets.USERNAME }}
-          port: 22
-          key: ${{ secrets.EC2_SSH_KEY }}
-          source: "./Makefile"
-          target: ${{ secrets.TARGET_DIR }}
-  
+ 
