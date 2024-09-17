@@ -21,19 +21,7 @@ jobs:
            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
            aws-region: "us-east-1"
-
-      - name: Set environment variables
-        run: |
-          echo "HOST=${{ secrets.HOST_DNS }}" >> $GITHUB_ENV
-          echo "USERNAME=${{ secrets.USERNAME }}" >> $GITHUB_ENV
-          echo "PORT=22" >> $GITHUB_ENV
-          echo "TARGET=${{ secrets.TARGET_DIR }}" >> $GITHUB_ENV
-
-          # Handle the SSH key separately
-          echo "${{ secrets.EC2_SSH_KEY }}" > private_key.pem
-          chmod 600 private_key.pem
-        shell: bash
-      
+     
       - name: Copy 'dags' folder
         uses: appleboy/scp-action@master
         with:
@@ -43,3 +31,54 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "./dags"
           target: ${{ secrets.TARGET_DIR }}
+
+      - name: Copy 'docker-airflow' folder
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST_DNS }}
+          username: ${{ secrets.USERNAME }}
+          port: 22
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "./docker-airflow"
+          target: ${{ secrets.TARGET_DIR }}
+
+      - name: Copy 'integration-test' folder
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST_DNS }}
+          username: ${{ secrets.USERNAME }}
+          port: 22
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "./integration-test"
+          target: ${{ secrets.TARGET_DIR }}
+
+      - name: Copy 'test' folder
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST_DNS }}
+          username: ${{ secrets.USERNAME }}
+          port: 22
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "./test"
+          target: ${{ secrets.TARGET_DIR }}
+
+      - name: Copy 'docker-compose-airflow.yaml' folder
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST_DNS }}
+          username: ${{ secrets.USERNAME }}
+          port: 22
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "./docker-compose-airflow.yaml"
+          target: ${{ secrets.TARGET_DIR }}
+
+      - name: Copy 'Makefile' folder
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST_DNS }}
+          username: ${{ secrets.USERNAME }}
+          port: 22
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "./Makefile"
+          target: ${{ secrets.TARGET_DIR }}
+  
