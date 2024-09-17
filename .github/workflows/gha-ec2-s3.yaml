@@ -69,6 +69,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: 22
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: "docker-compose-airflow.yaml, Makefile"
+          source: "/docker-compose-airflow.yaml, /Makefile"
           target: ${{ secrets.TARGET_DIR }}
  
