@@ -22,12 +22,48 @@ jobs:
            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
            aws-region: "us-east-1"
 
-      - name: Deploy Code to EC2
+      - &scp_config # Define common SCP configuration
+        host: ${{ secrets.HOST_DNS }}
+        username: ${{ secrets.USERNAME }}
+        port: 22
+        key: ${{ secrets.EC2_SSH_KEY }}
+        target: ${{ secrets.TARGET_DIR }}
+
+      - name: Copy 'dags' folder
         uses: appleboy/scp-action@master
         with:
-          source: "./"
-          key: ${{ secrets.EC2_SSH_KEY }}
-          host: ${{ secrets.HOST_DNS }}
-          username: ${{ secrets.USERNAME }}
-          port: 22
-          target: ${{ secrets.TARGET_DIR }}
+          <<: *scp_config # Reuse SCP config
+          source: "./dags"
+
+      - name: Copy 'docker-airflow' folder
+        uses: appleboy/scp-action@master
+        with:
+          <<: *scp_config # Reuse SCP config
+          source: "./docker-airflow"
+
+      - name: Copy 'integration-test' folder
+        uses: appleboy/scp-action@master
+        with:
+          <<: *scp_config # Reuse SCP config
+          source: "./integration-test"
+
+      - name: Copy 'test' folder
+        uses: appleboy/scp-action@master
+        with:
+          <<: *scp_config # Reuse SCP config
+          source: "./test"
+  
+      - name: Copy 'docker-compose-airflow.yaml' folder
+        uses: appleboy/scp-action@master
+        with:
+          <<: *scp_config # Reuse SCP config
+          source: "./docker-compose-airflow.yaml"
+  
+      - name: Copy 'Makefile' folder
+        uses: appleboy/scp-action@master
+        with:
+          <<: *scp_config # Reuse SCP config
+          source: "./Makefile"
+  
+
+          

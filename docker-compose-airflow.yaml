@@ -94,24 +94,6 @@ x-airflow-common:
 
 services:
 
-  postgres:
-    build:
-      context: ./docker-postgres
-      dockerfile: Dockerfile
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: postgres
-    env_file: docker-postgres/.env.postgres
-    volumes:
-      - postgres-db-volume:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD", "pg_isready", "-U", "postgres"]
-      interval: 10s
-      retries: 5
-      start_period: 5s
-    restart: always
-
   airflow-webserver:
     <<: *airflow-common
     command: webserver
@@ -235,47 +217,3 @@ services:
       - bash
       - -c
       - airflow
-  
-  mlflow:
-    build:
-      context: ./docker-mlflow
-      dockerfile: Dockerfile
-    ports:
-      - "5000:5000"
-    env_file: docker-mlflow/.env.mlflow
-    depends_on:
-      postgres:
-        condition: service_healthy
-    volumes: 
-      - /usr/bin/docker:/usr/bin/docker
-      - /var/run/docker.sock:/var/run/docker.sock
-
-  jupyter:
-    build:
-      context: ./docker-jupyter
-      dockerfile: Dockerfile
-    ports:
-      - "8888:8888"
-    environment:
-      JUPYTER_ENABLE_LAB: yes
-    env_file: docker-jupyter/.env.jupyter
-    volumes: 
-      - ./notebooks:/app
-  
-  grafana:
-    image: grafana/grafana
-    user: "472"
-    ports:
-      - "3000:3000"
-    environment:
-      GF_SECURITY_ADMIN_USER: admin
-    env_file: grafana/.env.grafana
-    volumes:
-      - ./grafana/config/grafana_datasources.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
-      - ./grafana/config/grafana_dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml:ro
-      - ./grafana/dashboards:/opt/grafana/dashboards
-    restart: unless-stopped
-
-
-volumes:
-  postgres-db-volume:
