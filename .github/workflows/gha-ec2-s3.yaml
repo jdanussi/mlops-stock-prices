@@ -30,7 +30,7 @@ jobs:
           echo "TARGET=${{ secrets.TARGET_DIR }}" >> $GITHUB_ENV
 
           # Handle the SSH key separately
-          echo "${{ secrets.SSHKEY }}" > private_key.pem
+          echo "${{ secrets.EC2_SSH_KEY }}" > private_key.pem
           chmod 600 private_key.pem
         shell: bash
     
