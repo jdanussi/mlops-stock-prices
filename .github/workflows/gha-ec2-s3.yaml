@@ -22,53 +22,13 @@ jobs:
            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
            aws-region: "us-east-1"
      
-      - name: Copy 'dags' folder
+      - name: Deploy Code to airflow EC2
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.HOST_DNS }}
           username: ${{ secrets.USERNAME }}
           port: 22
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: "./dags"
+          source: "./,!./docker-jupyter,!./docker-mlflow,!./docker-postgres,!./grafana,!./notebooks,!./terraform"
           target: ${{ secrets.TARGET_DIR }}
 
-      - name: Copy 'docker-airflow' folder
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.HOST_DNS }}
-          username: ${{ secrets.USERNAME }}
-          port: 22
-          key: ${{ secrets.EC2_SSH_KEY }}
-          source: "./docker-airflow"
-          target: ${{ secrets.TARGET_DIR }}
-
-      - name: Copy 'integration-test' folder
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.HOST_DNS }}
-          username: ${{ secrets.USERNAME }}
-          port: 22
-          key: ${{ secrets.EC2_SSH_KEY }}
-          source: "./integration-test"
-          target: ${{ secrets.TARGET_DIR }}
-
-      - name: Copy 'test' folder
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.HOST_DNS }}
-          username: ${{ secrets.USERNAME }}
-          port: 22
-          key: ${{ secrets.EC2_SSH_KEY }}
-          source: "./test"
-          target: ${{ secrets.TARGET_DIR }}
-
-      - name: Copy 'docker-compose-airflow.yaml' folder
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.HOST_DNS }}
-          username: ${{ secrets.USERNAME }}
-          port: 22
-          key: ${{ secrets.EC2_SSH_KEY }}
-          source: "/*.yaml,/Makefile"
-          target: ${{ secrets.TARGET_DIR }}
- 
