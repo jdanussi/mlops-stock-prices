@@ -168,3 +168,12 @@ HOST_DNS=ec2-54-85-41-86.compute-1.amazonaws.com; ssh -i ~/.ssh/mlopskey ubuntu@
 sudo apt-get update
 sudo apt install postgresql-client-common
 sudo apt install postgresql
+
+psql -h mlops-rds-instance.crcqa0ua6cb3.us-east-1.rds.amazonaws.com -U postgres
+
+
+https://docs.docker.com/compose/install/linux/
+DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+mkdir -p $DOCKER_CONFIG/cli-plugins
+curl -SL https://github.com/docker/compose/releases/download/v2.29.4/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
