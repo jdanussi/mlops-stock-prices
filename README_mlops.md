@@ -138,5 +138,33 @@ AWS_SECRET_ACCESS_KEY
 ubuntu@ip-10-0-1-92:~/.ssh$ cat authorized_keys 
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINBCNnm8uOW4atJFTCzbcKApc3HiMC7ZwSUAlOQ1LUfB mlopskey
 
-HOST_DNS=ec2-18-208-231-130.compute-1.amazonaws.com; ssh -i ~/.ssh/mlopskey ubuntu@$HOST_DNS
+HOST_DNS=ec2-54-85-41-86.compute-1.amazonaws.com; ssh -i ~/.ssh/mlopskey ubuntu@$HOST_DNS
 
+
+
+      - name: Set environment variables
+        run: |
+          echo "HOST=${{ secrets.HOST_DNS }}" >> $GITHUB_ENV
+          echo "USERNAME=${{ secrets.USERNAME }}" >> $GITHUB_ENV
+          echo "PORT=22" >> $GITHUB_ENV
+          echo "TARGET=${{ secrets.TARGET_DIR }}" >> $GITHUB_ENV
+
+          # Handle the SSH key separately
+          echo "${{ secrets.EC2_SSH_KEY }}" > private_key.pem
+          chmod 600 private_key.pem
+        shell: bash
+
+      - name: Copy 'dags' folder
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ env.HOST }}
+          username: ${{ env.USERNAME }}
+          port: ${{ env.PORT }}
+          key: private_key.pem
+          source: "./dags"
+          target: ${{ env.TARGET }}
+
+
+sudo apt-get update
+sudo apt install postgresql-client-common
+sudo apt install postgresql
