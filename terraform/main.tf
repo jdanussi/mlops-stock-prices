@@ -214,16 +214,16 @@ resource "aws_db_subnet_group" "mlops_db_subnet" {
   }
 }
 
-resource "aws_db_instance" "wtp_rds" {
+resource "aws_db_instance" "mlops_rds" {
   identifier                   = "mlops-rds-instance"
   allocated_storage            = 20
   db_subnet_group_name         = aws_db_subnet_group.mlops_db_subnet.id
-  db_name                      = "mlflow_db"
+  db_name                      = "airflow"
   engine                       = "postgres"
   engine_version               = "16.3"
   instance_class               = "db.t3.micro"
   username                     = "postgres"
-  password                     = "password"
+  password                     = "..katrina2024"
   parameter_group_name         = "default.postgres16"
   multi_az                     = false
   publicly_accessible          = true
@@ -240,7 +240,7 @@ resource "aws_db_instance" "wtp_rds" {
   apply_immediately            = true
 
   tags = {
-    Name        = "mlflow-rds"
+    Name        = "mlops-rds"
     Environment = "production"
   }
 }

@@ -163,3 +163,8 @@ HOST_DNS=ec2-54-85-41-86.compute-1.amazonaws.com; ssh -i ~/.ssh/mlopskey ubuntu@
           key: private_key.pem
           source: "./dags"
           target: ${{ env.TARGET }}
+
+
+sudo apt-get update
+sudo apt install postgresql-client-common
+sudo apt install postgresql
