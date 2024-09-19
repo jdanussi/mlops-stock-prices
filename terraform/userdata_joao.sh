@@ -32,21 +32,21 @@ git config --global user.name "jdanussi"
 git config --global user.email "jdanussi@gmail.com"
 git add .
 git commit -m "New linux git install commit"
-git remote add dev https://Joaoluislins:senhateste@github.com/Joaoluislins/algotrader-aws-airflow.git
+git remote add develop https://github.com/jdanussi/mlops-stock-prices.git
 git remote update
 git fetch
-git checkout dev/dev docker-compose.yaml
+git checkout develop/develop docker-compose-oficial.yaml
+cp docker-compose-oficial.yaml docker-compose.yaml
 
 echo "building airflow client"
-mkdir -p ./logs ./plugins ./outputs ./aws_twi_env
+mkdir -p ./dags ./logs ./plugins ./models ./data ./reports
 echo -e "AIRFLOW_UID=$(id -u)" > .env
 echo -e "AIRFLOW_GID=0" >> .env
-echo -e "DB_ENDPOINT=${DB_ENDPOINT}" >> .env
+#echo -e "DB_ENDPOINT=${DB_ENDPOINT}" >> .env
+echo -e "DB_ENDPOINT=mlops-rds-instance.crcqa0ua6cb3.us-east-1.rds.amazonaws.com" >> .env
 echo -e "DB_USER=airflow" >> .env
-echo -e "DB_PASS=${db_password}" >> .env
-echo -e "AWS_ID=${AWS_ID}" > ./aws_twi_env/.env
-echo -e "AWS_KEY=${AWS_KEY}" >> ./aws_twi_env/.env
-echo -e "BEARER_TOKEN=${BEARER_TOKEN}" >> ./aws_twi_env/.env
+#echo -e "DB_PASS=${db_password}" >> .env
+echo -e "DB_PASS=..katrina2024" >> .env
 echo -e ".idea/" > .gitignore
 echo -e ".vscode-server/" >> .gitignore
 echo -e ".env" >> .gitignore
