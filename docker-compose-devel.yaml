@@ -74,9 +74,7 @@ x-airflow-common:
     # The following line can be used to set a custom config file, stored in the local config folder
     # If you want to use it, outcomment it and replace airflow.cfg with the name of your config file
     # AIRFLOW_CONFIG: '/opt/airflow/config/airflow.cfg'
-    # AWS_ACCESS_KEY_ID: AKIAYG23TRVO3X6X46SB
-    # AWS_SECRET_ACCESS_KEY: F9pjZzSw0/RUp/TAjZHS+vUX7n+WdtnrJpkgA+XV
-    # AWS_REGION: us-east-1
+    
   env_file: docker-airflow/.env.airflow
   volumes:
     - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/dags
