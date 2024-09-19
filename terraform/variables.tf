@@ -27,3 +27,9 @@ variable "tracking_server_host" {
   description = "Tracking server host address, e.g. 127.0.0.1"
   default     = "127.0.0.1"
 }
+
+variable "db_password" {
+  type        = string
+  description = "Password for the PostgreSQL instance"
+  default     = "..katrina2024"
+}

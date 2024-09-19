@@ -178,12 +178,13 @@ resource "aws_key_pair" "mlops_key" {
 
 resource "aws_instance" "airflow_node" {
   ami                    = data.aws_ami.server_ami.id
-  instance_type          = "t2.medium"
+  ami                    = "ami-0a5c3558529277641"
+  instance_type          = "t3.large"
   key_name               = aws_key_pair.mlops_key.id
   vpc_security_group_ids = [aws_security_group.mlops_ec2_sg.id]
   subnet_id              = aws_subnet.mlops_public_subnet.id
   iam_instance_profile   = aws_iam_instance_profile.mlops_ec2_profile.name
-  user_data              = file("userdata2.sh")
+  user_data              = file("userdata-joao.sh")
 
   root_block_device {
     volume_size = 30
@@ -219,11 +220,11 @@ resource "aws_db_instance" "mlops_rds" {
   allocated_storage            = 20
   db_subnet_group_name         = aws_db_subnet_group.mlops_db_subnet.id
   db_name                      = "airflow"
+  username                     = "airflow"
+  password                     = "${var.db_password}"
   engine                       = "postgres"
   engine_version               = "16.3"
   instance_class               = "db.t3.micro"
-  username                     = "postgres"
-  password                     = "..katrina2024"
   parameter_group_name         = "default.postgres16"
   multi_az                     = false
   publicly_accessible          = true
