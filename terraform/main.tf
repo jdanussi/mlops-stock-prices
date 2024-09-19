@@ -177,14 +177,13 @@ resource "aws_key_pair" "mlops_key" {
 }
 
 resource "aws_instance" "airflow_node" {
-  ami                    = data.aws_ami.server_ami.id
   ami                    = "ami-0a5c3558529277641"
   instance_type          = "t3.large"
   key_name               = aws_key_pair.mlops_key.id
   vpc_security_group_ids = [aws_security_group.mlops_ec2_sg.id]
   subnet_id              = aws_subnet.mlops_public_subnet.id
   iam_instance_profile   = aws_iam_instance_profile.mlops_ec2_profile.name
-  user_data              = file("userdata-joao.sh")
+  user_data              = file("userdata_joao.sh")
 
   root_block_device {
     volume_size = 30
