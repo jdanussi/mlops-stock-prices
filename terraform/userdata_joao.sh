@@ -42,11 +42,11 @@ echo "building airflow client"
 mkdir -p ./dags ./logs ./plugins ./models ./data ./reports
 echo -e "AIRFLOW_UID=$(id -u)" > .env
 echo -e "AIRFLOW_GID=0" >> .env
-#echo -e "DB_ENDPOINT=${DB_ENDPOINT}" >> .env
-echo -e "DB_ENDPOINT=mlops-rds-instance.crcqa0ua6cb3.us-east-1.rds.amazonaws.com" >> .env
+echo -e "DB_ENDPOINT=${DB_ENDPOINT}" >> .env
 echo -e "DB_USER=airflow" >> .env
-#echo -e "DB_PASS=${db_password}" >> .env
-echo -e "DB_PASS=..katrina2024" >> .env
+echo -e "DB_PASS=${db_password}" >> .env
+echo -e "AWS_ID=${AWS_ID}" > .env
+echo -e "AWS_KEY=${AWS_KEY}" >> .env
 echo -e ".idea/" > .gitignore
 echo -e ".vscode-server/" >> .gitignore
 echo -e ".env" >> .gitignore
