@@ -48,3 +48,14 @@ data "aws_iam_policy_document" "mlops_ec2_policy_doc" {
     resources = ["*"]
   }
 }
+
+
+data "template_file" "airflow_user_data" {
+  template = "${file("${path.module}/userdata_joao.sh")}"
+  vars = {
+    DB_ENDPOINT  = aws_db_instance.mlops_rds.endpoint
+    db_password  = "${var.db_password}"
+    AWS_ID       = "${var.AWS_ID}"
+    AWS_KEY      = "${var.AWS_KEY}"
+  }
+}

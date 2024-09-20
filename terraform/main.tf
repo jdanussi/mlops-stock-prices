@@ -183,7 +183,9 @@ resource "aws_instance" "airflow_node" {
   vpc_security_group_ids = [aws_security_group.mlops_ec2_sg.id]
   subnet_id              = aws_subnet.mlops_public_subnet.id
   iam_instance_profile   = aws_iam_instance_profile.mlops_ec2_profile.name
-  user_data              = file("userdata_joao.sh")
+  #user_data              = file("userdata_joao.sh")
+  user_data              = "${data.template_file.airflow_user_data.rendered}"
+  depends_on             = [aws_instance.airflow_node, aws_db_instance.mlops_rds]
 
   root_block_device {
     volume_size = 30
@@ -242,16 +244,6 @@ resource "aws_db_instance" "mlops_rds" {
   tags = {
     Name        = "mlops-rds"
     Environment = "production"
-  }
-}
-
-data "template_file" "airflow_user_data" {
-  template = "${file("${path.module}/userdata_joao.sh")}"
-  vars = {
-    DB_ENDPOINT  = aws_db_instance.mlops_rds.endpoint
-    db_password  = "${var.db_password}"
-    AWS_ID       = "${var.AWS_ID}"
-    AWS_KEY      = "${var.AWS_KEY}"
   }
 }
 
