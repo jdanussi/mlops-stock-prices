@@ -45,7 +45,7 @@ echo -e "AIRFLOW_GID=0" >> .env
 echo -e "DB_ENDPOINT=${DB_ENDPOINT}" >> .env
 echo -e "DB_USER=airflow" >> .env
 echo -e "DB_PASS=${db_password}" >> .env
-echo -e "AWS_ID=${AWS_ID}" > .env
+echo -e "AWS_ID=${AWS_ID}" >> .env
 echo -e "AWS_KEY=${AWS_KEY}" >> .env
 echo -e ".idea/" > .gitignore
 echo -e ".vscode-server/" >> .gitignore
