@@ -7,7 +7,7 @@ variable "bucket" {
 variable "sns_endpoint" {
   type        = string
   description = "Receiver email endpoint"
-  default     = "example@example.com"
+  default     = "jdanussi@gmail.com"
 }
 
 variable "artifact_paths" {
@@ -33,3 +33,5 @@ variable "db_password" {
   description = "Password for the PostgreSQL instance"
   default     = "..katrina2024"
 }
+
+

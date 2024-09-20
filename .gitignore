@@ -148,3 +148,4 @@ terraform/.terraform
 
 *.md
 start.sh
+**/variables.tf
