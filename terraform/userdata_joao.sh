@@ -42,7 +42,6 @@ git checkout develop/develop docker-airflow
 echo "building airflow client"
 mkdir -p ./dags ./logs ./plugins ./models ./data ./reports
 echo -e "AIRFLOW_UID=$(id -u)" > .env
-echo -e "sarasa=capooo06Oct" >> .env
 echo -e "AIRFLOW_GID=0" >> .env
 echo -e "AWS_ID=${AWS_ID}" >> .env
 echo -e "AWS_KEY=${AWS_KEY}" >> .env

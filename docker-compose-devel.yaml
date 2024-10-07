@@ -98,9 +98,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5432:5432"
-    environment:
-      POSTGRES_USER: postgres
-    env_file: docker-postgres/.env.postgres
+    env_file: .env
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
     healthcheck:
