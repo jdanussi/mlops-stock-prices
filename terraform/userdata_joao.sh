@@ -35,13 +35,14 @@ git commit -m "New linux git install commit"
 git remote add develop https://github.com/jdanussi/mlops-stock-prices.git
 git remote update
 git fetch
-git checkout develop/develop docker-compose-oficial.yaml
-cp docker-compose-oficial.yaml docker-compose.yaml
+git checkout develop/develop docker-compose-prod.yaml
+cp docker-compose-prod.yaml docker-compose.yaml
+git checkout develop/develop docker-airflow
 
 echo "building airflow client"
 mkdir -p ./dags ./logs ./plugins ./models ./data ./reports
 echo -e "AIRFLOW_UID=$(id -u)" > .env
-echo -e "sarasa=capooo" >> .env
+echo -e "sarasa=capooo06Oct" >> .env
 echo -e "AIRFLOW_GID=0" >> .env
 echo -e "AWS_ID=${AWS_ID}" >> .env
 echo -e "AWS_KEY=${AWS_KEY}" >> .env
