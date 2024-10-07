@@ -57,7 +57,8 @@ x-airflow-common:
     &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
     #AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
-    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@mlops-rds-instance.crcqa0ua6cb3.us-east-1.rds.amazonaws.com/airflow
+    #AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@mlops-rds-instance.crcqa0ua6cb3.us-east-1.rds.amazonaws.com/airflow
+    AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${DB_USER}:${DB_PASS}@${DB_ENDPOINT}/airflow
     #AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres/airflow
     #AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
     AIRFLOW__CORE__FERNET_KEY: ''
@@ -86,7 +87,7 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/models:/opt/airflow/models
     - ${AIRFLOW_PROJ_DIR:-.}/reports:/opt/airflow/reports
   user: "${AIRFLOW_UID:-50000}:0"
-
+  
 
 services:
 
