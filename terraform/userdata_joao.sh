@@ -63,7 +63,9 @@ echo -e "plugins/" >> .gitignore
 echo -e "linux-git-install.txt" >> .gitignore
 sudo chown -R ec2-user:ec2-user .
 
+echo "creating databses, users and tables"
 export PGPASSWORD=${db_password}
+echo $PGPASSWORD
 psql -h mlops-rds-instance.crcqa0ua6cb3.us-east-1.rds.amazonaws.com -U airflow -a -f docker-postgres/init.sql
 
 sudo chmod 666 /var/run/docker.sock

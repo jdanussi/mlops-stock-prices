@@ -184,7 +184,6 @@ resource "aws_instance" "airflow_node" {
   subnet_id              = aws_subnet.mlops_public_subnet.id
   iam_instance_profile   = aws_iam_instance_profile.mlops_ec2_profile.name
   #user_data              = file("userdata_joao.sh")
-  #user_data              = "${data.template_file.airflow_user_data.rendered}"
   user_data              = data.template_file.airflow_user_data.rendered
   depends_on             = [aws_instance.airflow_node, aws_db_instance.mlops_rds]
 
@@ -200,7 +199,7 @@ resource "aws_instance" "airflow_node" {
   provisioner "local-exec" {
     command = templatefile("linux-ssh-config.tpl", {
       hostname     = self.public_ip,
-      user         = "ubuntu",
+      user         = "ec2-user",
       identityfile = "~/.ssh/mlopskey"
     })
     interpreter = ["bash", "-c"]
@@ -227,7 +226,6 @@ resource "aws_db_instance" "mlops_rds" {
   engine                       = "postgres"
   engine_version               = "14"
   instance_class               = "db.t3.micro"
-  #parameter_group_name         = "default.postgres14"
   multi_az                     = false
   publicly_accessible          = true
   max_allocated_storage        = 100

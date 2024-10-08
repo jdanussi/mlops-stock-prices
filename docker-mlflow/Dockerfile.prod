@@ -1,0 +1,17 @@
+FROM python:3.10-slim
+
+# Set up the working directory
+WORKDIR /mlflow
+
+COPY requirements.txt requirements.txt
+
+RUN pip install -r requirements.txt
+
+# Set up the SQLite database URI as environment variable
+ENV BACKEND_URI=postgresql://mlflow:mlflow@mlops-rds-instance.crcqa0ua6cb3.us-east-1.rds.amazonaws.com/mlflow
+ENV ARTIFACT_URI=s3://s3b-mlops-mlflow
+
+# Expose the port the app runs on
+EXPOSE 5000
+
+ENTRYPOINT sleep 10 && mlflow server --backend-store-uri $BACKEND_URI --default-artifact-root $ARTIFACT_URI --host 0.0.0.0 --port 5000
