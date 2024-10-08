@@ -48,7 +48,7 @@ default_args = {
     "depends_on_past": False,
     "retries": 1,
     "retry_delay": timedelta(minutes=5),
-    "start_date": datetime(2024, 7, 1),
+    "start_date": datetime(2024, 10, 1),
     # "end_date": datetime(2024, 8, 18),
 }
 
