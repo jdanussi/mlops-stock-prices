@@ -61,7 +61,6 @@ echo -e "dags/" >> .gitignore
 echo -e "logs/" >> .gitignore
 echo -e "plugins/" >> .gitignore
 echo -e "linux-git-install.txt" >> .gitignore
-echo -e "Esto solo esta en rama develop" >> .env
 sudo chown -R ec2-user:ec2-user .
 
 export PGPASSWORD=${db_password}
