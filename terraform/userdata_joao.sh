@@ -46,7 +46,6 @@ cp docker-compose-prod.yaml docker-compose.yaml
 
 echo "building airflow client"
 mkdir -p ./dags ./logs ./plugins ./models ./data ./reports
-echo -e "Esto solo esta en rama develop" > .env
 echo -e "AIRFLOW_UID=$(id -u)" > .env
 echo -e "AIRFLOW_GID=0" >> .env
 echo -e "AWS_ID=${AWS_ID}" >> .env
@@ -62,6 +61,7 @@ echo -e "dags/" >> .gitignore
 echo -e "logs/" >> .gitignore
 echo -e "plugins/" >> .gitignore
 echo -e "linux-git-install.txt" >> .gitignore
+echo -e "Esto solo esta en rama develop" >> .env
 sudo chown -R ec2-user:ec2-user .
 
 export PGPASSWORD=${db_password}
