@@ -66,7 +66,8 @@ def run_train(stock_symbol, best_params, parent_run_id, data_path: str = "./data
     MODEL_NAME = EXPERIMENT_NAME
     DEVELOPER = os.environ.get("DEVELOPER", "Jorge Danussi")
 
-    mlflow.set_tracking_uri("http://mlflow:5000")
+    mlflow.set_tracking_uri("http://ec2-54-165-190-18.compute-1.amazonaws.com:5000")
+    #mlflow.set_tracking_uri("http://mlflow:5000")
     mlflow.set_experiment(experiment_name=EXPERIMENT_NAME)
 
     with mlflow.start_run(run_id=parent_run_id):
@@ -130,7 +131,8 @@ def model_to_production(
 ):
     """Function for register the model."""
 
-    mlflow.set_tracking_uri("http://mlflow:5000")
+    mlflow.set_tracking_uri("http://ec2-54-165-190-18.compute-1.amazonaws.com:5000")
+    #mlflow.set_tracking_uri("http://mlflow:5000")
     mlflow_client = MlflowClient()
 
     # X_test, y_test = load_pickle(os.path.join(data_path, f"test_{stock_symbol}.pkl"))

@@ -31,7 +31,8 @@ def run_optimization(
     MODEL_NAME = EXPERIMENT_NAME
     DEVELOPER = os.environ.get("DEVELOPER", "Jorge Danussi")
 
-    mlflow.set_tracking_uri("http://mlflow:5000")
+    mlflow.set_tracking_uri("http://ec2-54-165-190-18.compute-1.amazonaws.com:5000")
+    #mlflow.set_tracking_uri("http://mlflow:5000")
     mlflow.set_experiment(experiment_name=EXPERIMENT_NAME)
 
     # X_train, y_train = load_pickle(os.path.join(data_path, f"train_{stock_symbol}.pkl"))
