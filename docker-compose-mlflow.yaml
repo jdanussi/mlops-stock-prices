@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  
+  mlflow:
+    build:
+      context: ./docker-mlflow
+      dockerfile: Dockerfile.prod
+    ports:
+      - "5000:5000"
+    env_file: .env
+    volumes: 
+      - /usr/bin/docker:/usr/bin/docker
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  grafana:
+    image: grafana/grafana
+    user: "472"
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+    env_file: .env
+    volumes:
+      - ./grafana/config/grafana_datasources.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
+      - ./grafana/config/grafana_dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml:ro
+      - ./grafana/dashboards:/opt/grafana/dashboards
+    restart: unless-stopped
