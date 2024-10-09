@@ -45,7 +45,8 @@ def run_predict(
 
     MODEL_NAME = f"stock-{stock_symbol}-xgboost"
 
-    mlflow.set_tracking_uri("http://mlflow:5000")
+    mlflow.set_tracking_uri("http://ec2-54-165-190-18.compute-1.amazonaws.com:5000")
+    #mlflow.set_tracking_uri("http://mlflow:5000")
     client = MlflowClient()
 
     # Get the information for the latest version of the model in a given stage
