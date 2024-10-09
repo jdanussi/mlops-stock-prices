@@ -31,7 +31,7 @@ def run_optimization(
     MODEL_NAME = EXPERIMENT_NAME
     DEVELOPER = os.environ.get("DEVELOPER", "Jorge Danussi")
 
-    mlflow.set_tracking_uri("http://ec2-54-165-190-18.compute-1.amazonaws.com:5000")
+    mlflow.set_tracking_uri("http://ec2-34-229-43-130.compute-1.amazonaws.com:5000")
     #mlflow.set_tracking_uri("http://mlflow:5000")
     mlflow.set_experiment(experiment_name=EXPERIMENT_NAME)
 
