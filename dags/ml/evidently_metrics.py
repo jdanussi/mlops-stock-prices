@@ -168,7 +168,7 @@ def calculate_metrics(
         [[execution_date, stock_symbol, prediction_drift, num_drifted_columns]],
         columns=columns,
     )
-    # print(evidently_df)
+    print(evidently_df)
 
     save_metrics_to_db(evidently_df)
 

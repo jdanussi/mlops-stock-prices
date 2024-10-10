@@ -1,8 +1,6 @@
 name: Push-to-EC2 and Upload to S3
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
