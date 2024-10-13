@@ -38,10 +38,10 @@ git commit -m "New linux git install commit"
 git remote add develop https://github.com/jdanussi/mlops-stock-prices.git
 git remote update
 git fetch
-git checkout develop/develop dags
-git checkout develop/develop docker-airflow
-git checkout develop/develop docker-postgres/init.sql
-git checkout develop/develop docker-compose-prod.yaml
+git checkout main/main dags
+git checkout main/main docker-airflow
+git checkout man/main docker-postgres/init.sql
+git checkout main/main docker-compose-prod.yaml
 cp docker-compose-prod.yaml docker-compose.yaml
 
 echo "building airflow client"
@@ -68,7 +68,7 @@ sudo chown -R ec2-user:ec2-user .
 echo "creating databses, users and tables"
 export PGPASSWORD=${db_password}
 echo $PGPASSWORD
-psql -h mlops-rds-instance.crcqa0ua6cb3.us-east-1.rds.amazonaws.com -U airflow -a -f docker-postgres/init.sql
+psql -h ${DB_ENDPOINT} -U airflow -a -f docker-postgres/init.sql
 
 sudo chmod 666 /var/run/docker.sock
 /usr/local/bin/docker-compose up airflow-init
