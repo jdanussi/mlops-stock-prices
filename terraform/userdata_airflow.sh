@@ -54,7 +54,7 @@ echo -e "DB_ENDPOINT=${DB_ENDPOINT}" >> .env
 echo -e "DB_USER=airflow" >> .env
 echo -e "DB_PASS=${db_password}" >> .env
 echo -e "SQL_DB=airflow:${db_password}@${DB_ENDPOINT}/stocks" >> .env
-echo -e "S3_BUCKET=${bucket}" >> .env
+echo -e "S3_BUCKET=${S3_BUCKET}" >> .env
 echo -e "TRACKING_URI=http://${MLFLOW_INSTANCE}:5000" >> .env
 echo -e ".idea/" > .gitignore
 echo -e ".vscode-server/" >> .gitignore

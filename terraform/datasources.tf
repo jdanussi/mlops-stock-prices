@@ -81,11 +81,11 @@ data "aws_iam_policy_document" "mlops_ec2_policy_doc" {
 }
 
 data "template_file" "airflow_user_data" {
-  template = "${file("${path.module}/userdata_joao.sh")}"
+  template = "${file("${path.module}/userdata_airflow.sh")}"
   vars = {
     DB_ENDPOINT  = aws_db_instance.mlops_rds.endpoint
     db_password  = "${var.db_password}"
-    bucket  = "${var.bucket}"
+    BUCKET  = "${var.bucket}"
     MLFLOW_INSTANCE = aws_instance.mlflow_node.public_dns
     AWS_ID       = "${var.AWS_ID}"
     AWS_KEY      = "${var.AWS_KEY}"
@@ -97,7 +97,7 @@ data "template_file" "mlflow_user_data" {
   vars = {
     DB_ENDPOINT  = aws_db_instance.mlops_rds.endpoint
     db_password  = "${var.db_password}"
-    bucket  = "${var.bucket}"
+    S3_BUCKET  = "${var.bucket}"
     AWS_ID       = "${var.AWS_ID}"
     AWS_KEY      = "${var.AWS_KEY}"
   }
