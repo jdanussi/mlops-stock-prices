@@ -37,6 +37,9 @@ git remote update
 git fetch
 git checkout main/main docker-mlflow
 git checkout main/main grafana
+cp grafana/config/grafana_datasources_prod.yaml grafana/config/grafana_datasources.yaml
+git checkout main/main reports
+git checkout main/main reports.py
 git checkout main/main docker-compose-mlflow.yaml
 cp docker-compose-mlflow.yaml docker-compose.yaml
 

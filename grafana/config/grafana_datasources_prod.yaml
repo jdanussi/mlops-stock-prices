@@ -1,0 +1,15 @@
+# config file version
+apiVersion: 1
+
+# list of datasources to insert/update
+# available in the database
+datasources:
+  - name: PostgreSQL
+    type: postgres
+    url: mlops-rds-instance.crcqa0ua6cb3.us-east-1.rds.amazonaws.com:5432
+    user: airflow
+    secureJsonData:
+      password: 'albeta2023'
+    jsonData:
+      sslmode: 'disable'
+      database: stocks
