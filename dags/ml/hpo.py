@@ -30,8 +30,9 @@ def run_optimization(
     EXPERIMENT_NAME = f"stock-{stock_symbol}-xgboost"
     MODEL_NAME = EXPERIMENT_NAME
     DEVELOPER = os.environ.get("DEVELOPER", "Jorge Danussi")
+    TRACKING_URI = os.environ.get("TRACKING_URI", "mlflow")
 
-    mlflow.set_tracking_uri("http://ec2-34-229-43-130.compute-1.amazonaws.com:5000")
+    mlflow.set_tracking_uri(TRACKING_URI)
     #mlflow.set_tracking_uri("http://mlflow:5000")
     mlflow.set_experiment(experiment_name=EXPERIMENT_NAME)
 
