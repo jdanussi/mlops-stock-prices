@@ -40,7 +40,7 @@ git remote update
 git fetch
 git checkout main/main dags
 git checkout main/main docker-airflow
-git checkout man/main docker-postgres/init.sql
+git checkout main/main docker-postgres/init.sql
 git checkout main/main docker-compose-prod.yaml
 cp docker-compose-prod.yaml docker-compose.yaml
 
