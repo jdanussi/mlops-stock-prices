@@ -35,7 +35,7 @@ git config --global user.name "jdanussi"
 git config --global user.email "jdanussi@gmail.com"
 git add .
 git commit -m "New linux git install commit"
-git remote add develop https://github.com/jdanussi/mlops-stock-prices.git
+git remote add main https://github.com/jdanussi/mlops-stock-prices.git
 git remote update
 git fetch
 git checkout main/main dags
