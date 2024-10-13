@@ -85,7 +85,7 @@ data "template_file" "airflow_user_data" {
   vars = {
     DB_ENDPOINT  = aws_db_instance.mlops_rds.endpoint
     db_password  = "${var.db_password}"
-    BUCKET  = "${var.bucket}"
+    S3_BUCKET  = "${var.bucket}"
     MLFLOW_INSTANCE = aws_instance.mlflow_node.public_dns
     AWS_ID       = "${var.AWS_ID}"
     AWS_KEY      = "${var.AWS_KEY}"
