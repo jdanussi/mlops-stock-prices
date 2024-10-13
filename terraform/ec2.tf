@@ -50,6 +50,7 @@ resource "aws_instance" "airflow_node" {
   iam_instance_profile   = aws_iam_instance_profile.mlops_ec2_profile.name
   #user_data              = file("userdata_joao.sh")
   user_data              = data.template_file.airflow_user_data.rendered
+  user_data_replace_on_change = true
   depends_on             = [aws_instance.airflow_node, aws_db_instance.mlops_rds]
 
   root_block_device {

@@ -97,7 +97,7 @@ data "template_file" "mlflow_user_data" {
   vars = {
     DB_ENDPOINT  = aws_db_instance.mlops_rds.endpoint
     db_password  = "${var.db_password}"
-    S3_BUCKET  = "${var.bucket}"
+    S3_BUCKET    = "${var.bucket}"
     AWS_ID       = "${var.AWS_ID}"
     AWS_KEY      = "${var.AWS_KEY}"
   }
