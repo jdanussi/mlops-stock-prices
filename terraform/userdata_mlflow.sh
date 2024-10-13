@@ -48,6 +48,7 @@ echo -e "DB_ENDPOINT=${DB_ENDPOINT}" >> .env
 echo -e "DB_USER=mlflow" >> .env
 echo -e "DB_PASS=mlflow" >> .env
 echo -e "BACKEND_URI=postgresql://mlflow:mlflow@${DB_ENDPOINT}/mlflow" >> .env
+echo -e "ARTIFACT_URI=s3://${S3_BUCKET}" >> .env
 echo -e ".idea/" > .gitignore
 echo -e ".vscode-server/" >> .gitignore
 echo -e ".env" >> .gitignore
