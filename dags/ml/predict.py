@@ -44,8 +44,9 @@ def run_predict(
     """Function to make the predictions."""
 
     MODEL_NAME = f"stock-{stock_symbol}-xgboost"
+    TRACKING_URI = os.environ.get("TRACKING_URI", "mlflow")
 
-    mlflow.set_tracking_uri("http://ec2-34-229-43-130.compute-1.amazonaws.com:5000")
+    mlflow.set_tracking_uri(TRACKING_URI)
     #mlflow.set_tracking_uri("http://mlflow:5000")
     client = MlflowClient()
 
